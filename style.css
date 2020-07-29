@@ -1,0 +1,165 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    line-height: 1;
+    overflow-x: hidden;
+    height: 90vh;
+    color: #191970;
+    margin: 0;
+}
+
+canvas {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -9999;
+}
+
+#operation-msg, #type, #difficulty-msg, #difficulty {
+    display: inline-block;
+}
+
+#gamebtn {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 10px;
+    margin-top: 100px;
+    margin: 2em 0.3em 0.3em 0;
+    border-radius: 10px;
+    border: none;
+    font-family: inherit;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #3F51B5;
+    width: 100px;
+}
+  
+#gamebtn:hover{
+    cursor: pointer;
+    background-color: #4782c7;
+    transform: scale(1.3);
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#welcome {
+    margin: 15% 0 5% 0;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    display: inline-block;
+    position: relative;
+    text-shadow: -4px 3px 15px #ffffff, -5px 6px 15px #000000;
+}
+
+#welcome > h1 {
+    font-size: 600%;
+}
+
+#welcome > p {
+    font-size: 200%;
+    margin-bottom: -50px;
+}
+
+#welcome > h1:hover {
+    letter-spacing: 5px;
+    transform: scale(1.3);
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#score > p:hover {
+    transform: scale(1.3);
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+select {
+    text-align-last: center;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    font-family: inherit;
+}
+
+
+#question {
+    margin: 10% 0 5% 0;
+    font-size: 200px;
+}
+
+#tip {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+#answer, textarea {
+    width: 200px;
+    padding: 10px;
+    border: 0;
+    border-radius: 20px;
+    border-bottom: 1px solid #eeeeee;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    font-family: inherit;
+    text-align: center;
+    background-color: #B0E0E6;
+}
+
+#new-high-score {
+    animation: blinkingText 1s infinite;
+    animation-direction: alternate;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #3F51B5;
+    color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 5px 10px 5px;
+    border-radius: 6px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -100px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+@keyframes blinkingText{
+    from {color: red;}
+    to {color: transparent;}
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input:focus {
+    transform: scale(1.3);
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+input:focus::placeholder {
+    color: transparent;
+}

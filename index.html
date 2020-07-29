@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Math Game</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="javascript.js" defer></script>
+    </head>
+    
+    <body>
+        <div id="welcome">
+            <p>Welcome to</p>
+            <h1>the Math Game!</h1>
+        </div>
+        <div id="options">
+            <p id="operation-msg" class="tooltip">
+                Choose a type of operation:
+                <span class = "tooltiptext">Choose the type of math problems that you would like to solve</span>
+            </p>
+            <select id="type">
+                <option value="add">Addition</option>
+                <option value="sub">Subtraction</option>
+                <option value="mul">Multiplication</option>
+                <option value="div">Division</option>
+            </select>
+            <br>
+            <p id="difficulty-msg" class="tooltip">
+                Choose a difficulty level:
+                <span class = "tooltiptext">
+                    Easy - two numbers from 1-10<br>
+                    Medium - two numbers from 11-100<br>
+                    Hard - two numbers from 101-1000
+                </span>
+            </p>
+            <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div id="game">
+            <div id="score">
+                <p id="new-high-score">New High Score!</p>
+                <p>High Score: <span id="high-score">0</span></p>
+                <p>Current Score: <span id="current-score">0</span></p>
+            </div>
+            <div id="question">
+            </div>
+            <div id="tip">
+            </div>
+            <input type="number" id="answer" placeholder="Press ENTER to submit">
+        </div>
+        <button id="gamebtn">Start Game</button>
+        <p id="welcome2">Press START when you're ready!</p>
+        <canvas>
+        </canvas>
+    </body>
+</html>
