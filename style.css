@@ -110,9 +110,15 @@ select {
     background-color: #B0E0E6;
 }
 
-#new-high-score {
+#new-high-score, #wrong {
     animation: blinkingText 1s infinite;
     animation-direction: alternate;
+}
+
+.hs {
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
 }
 
 .tooltip {

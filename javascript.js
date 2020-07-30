@@ -1,4 +1,5 @@
 // Initialize global game variables
+let incorrect = 0;
 let currentScore = 0;
 let highScore = 0;
 let mathType = "";
@@ -24,7 +25,7 @@ function startWait() {
 
 // Determine whether game button should begin the game or reset the game
 function gameHelper() {
-    if (playing == true) {
+    if (playing === true) {
         // If user is currently playing, reset the game
         startWait();
     }
@@ -40,6 +41,8 @@ function gameSetup() {
     // Sets the game state to playing and resets the current score
     playing = true;
     currentScore = 0;
+    incorrect = 0;
+    let userAnswer = 0;
     // Hide elements in the welcome screen
     document.getElementById("welcome").style.display = "none";
     document.getElementById("welcome2").style.display = "none";
@@ -49,30 +52,30 @@ function gameSetup() {
     mathDifficulty = document.getElementById("difficulty").value;
     // Sets screen to show game elements
     document.getElementById("game").style.display = "block";
-    document.getElementById("new-high-score").style.display = "none";
-    document.getElementById("gamebtn").innerHTML = "Reset Game"
-    gameLoop();
-}
-
-// Main loop where the game logic is executed
-function gameLoop() {
-    let userAnswer = 0;
-    // Keeps track of the player's current score and updates the high score if current score is higher
     document.getElementById("current-score").innerHTML = currentScore;
-    if (currentScore > highScore) {
-        document.getElementById("new-high-score").style.display = "block";
-        highScore = currentScore;
-        document.getElementById("high-score").innerHTML = highScore;
-    }
-    // Display a new math question (only if previous question has been solved)
-    getQuestion(mathType, mathDifficulty);
+    document.getElementById("incorrect").innerHTML = incorrect;
+    document.getElementById("new-high-score").style.display = "none";
+    document.getElementById("wrong").style.display = "none";
+    document.getElementById("gamebtn").innerHTML = "Reset Game"
+    getQuestion(mathType, mathDifficulty, true);
     // Submits the player's answer if they press enter
     document.getElementById("answer").addEventListener("keydown", function (e) {
         if (e.keyCode === 13) {
             // Parse the answer input as a float for division problems that involve decimals
             userAnswer = parseFloat(document.getElementById("answer").value);
             document.getElementById("answer").value = "";
-            checkAnswer(userAnswer);
+            let correct = checkAnswer(userAnswer);
+            // Display a new math question (only if previous question has been solved)
+            getQuestion(mathType, mathDifficulty, correct);
+            // Keeps track of the player's current score and updates the high score if current score is higher
+            // Also updates the number of incorrect answers
+            document.getElementById("current-score").innerHTML = currentScore;
+            document.getElementById("incorrect").innerHTML = incorrect;
+            if (currentScore > highScore) {
+                document.getElementById("new-high-score").style.display = "block";
+                highScore = currentScore;
+                document.getElementById("high-score").innerHTML = highScore;
+            }
             return false;
         }
     });
@@ -80,9 +83,16 @@ function gameLoop() {
 }
 
 // Generate a new question based on previously selected type and difficulty
-function getQuestion(type, difficulty) {
+function getQuestion(type, difficulty, correctOrNot) {
+    // Get a new question only if previous answer was right
+    // Otherwise prompt the player to try again
+    if (correctOrNot === false) {
+        document.getElementById("wrong").style.display = "block";
+        return;
+    }
     let num1 = 0;
     let num2 = 0;
+    document.getElementById("wrong").style.display = "none";
     switch(difficulty) {
         // Randomly generate two numbers between 1-10
         case "easy":
@@ -131,9 +141,13 @@ function checkAnswer(userAnswer) {
     if (userAnswer === correctAnswer) {
         // Updates the player's current score
         currentScore++;
-        gameLoop();
+        return true;
     }
-    return;
+    else {
+        // Updates the player's number of incorrect answers
+        incorrect++;
+        return false;
+    }
 }
 
 // The following code is for drawing falling numbers in the background inspired by "matrix rain"
